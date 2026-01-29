@@ -376,6 +376,64 @@ var heo = {
   init: function() {
     this.getCustomPlayList();
     this.initScrollEvents();
+  },
+
+  // 检测并显示无歌词提示
+  checkLyricEmpty: function() {
+    const lrcContent = document.querySelector('.aplayer-lrc-contents');
+    if (!lrcContent) return;
+
+    // 移除已存在的无歌词提示
+    const existingHint = lrcContent.querySelector('.no-lyric-hint');
+    if (existingHint) {
+      existingHint.remove();
+    }
+
+    // 获取所有歌词行（排除无歌词提示）
+    const lyrics = lrcContent.querySelectorAll('p:not(.no-lyric-hint)');
+    
+    // 检查是否没有歌词或者只有空歌词
+    let hasValidLyric = false;
+    lyrics.forEach(p => {
+      const text = p.textContent.trim();
+      if (text && text !== '') {
+        hasValidLyric = true;
+      }
+    });
+
+    // 如果没有有效歌词，显示提示
+    if (!hasValidLyric || lyrics.length === 0) {
+      const hint = document.createElement('div');
+      hint.className = 'no-lyric-hint';
+      hint.innerHTML = `
+        <div class="no-lyric-text">暂无歌词</div>
+        <div class="no-lyric-subtext">一切尽在不言中</div>
+      `;
+      lrcContent.appendChild(hint);
+    }
+  },
+
+  // 初始化歌词检测
+  initLyricCheck: function(aplayer) {
+    // 切换歌曲时检测歌词
+    aplayer.on('listswitch', () => {
+      // 延迟检测，等待歌词加载
+      setTimeout(() => {
+        this.checkLyricEmpty();
+      }, 500);
+    });
+
+    // 歌词加载完成后检测
+    aplayer.on('loadeddata', () => {
+      setTimeout(() => {
+        this.checkLyricEmpty();
+      }, 500);
+    });
+
+    // 初始检测
+    setTimeout(() => {
+      this.checkLyricEmpty();
+    }, 1000);
   }
 }
 

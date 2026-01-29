@@ -134,6 +134,7 @@ class MetingJSElement extends HTMLElement {
     window.ap = this.aplayer;
 
     heo.setupMediaSessionHandlers(this.aplayer);
+    heo.initLyricCheck(this.aplayer);
   }
 
 }

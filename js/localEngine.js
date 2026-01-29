@@ -22,3 +22,4 @@ const ap = new APlayer({
 });
 
 heo.setupMediaSessionHandlers(ap);
+heo.initLyricCheck(ap);

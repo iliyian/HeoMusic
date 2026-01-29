@@ -274,6 +274,58 @@ body #nav-music {
   margin-left: 16px;
 }
 
+/* 无歌词提示样式 */
+.no-lyric-hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+  animation: fadeIn 0.5s ease;
+}
+
+.no-lyric-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+  opacity: 0.6;
+  animation: float 3s ease-in-out infinite;
+}
+
+.no-lyric-text {
+  font-size: 28px;
+  font-weight: bold;
+  color: #fff;
+  opacity: 0.8;
+  margin-bottom: 12px;
+}
+
+.no-lyric-subtext {
+  font-size: 16px;
+  color: #fff;
+  opacity: 0.5;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
 @media screen and (max-width: 768px) {
   .aplayer .aplayer-lrc .aplayer-lrc-contents {
     width: calc(100% - 40px);
