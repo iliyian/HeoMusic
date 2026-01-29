@@ -1,5 +1,11 @@
 @charset "UTF-8";
 
+/* 博客字体 - LXGW */
+@font-face {
+    font-family: "LXGW";
+    src: url(https://r2-imgs.iliyian.com/css/LXGWWenKai-Medium.ttf);
+}
+
 :root {
   --heo-white: #fff;
   --heo-white-op: rgba(255, 255, 255, 0.2);
@@ -37,6 +43,7 @@ body {
   background: rgb(13, 13, 13);
   position: relative;
   overflow: hidden;
+  font-family: "LXGW", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif;
 }
 
 #heoMusic-page .aplayer{
